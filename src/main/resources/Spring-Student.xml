@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="student" class="com.jag.springaop.customer.services.Student">
+		<property name="name" value="Jag" />
+		<property name="id" value="1" />
+	</bean>
+	
+	<bean id="hijackBeforeMethodBean" class="com.jag.springaop.aop.HijackBeforeMethod" />
+	
+	<bean id="studentProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	
+	<property name="target" ref="student" />
+	<property name="interceptorNames">
+	
+	<list>
+	<value>hijackBeforeMethodBean</value>
+	</list>
+	
+	</property>
+	</bean>
+	
+</beans>
